@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Configurações | Aura Joias & Acessórios{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+        <div class="mb-4">
+            <h1 class="font-display">Configurações da Conta</h1>
+            <p class="subtitle">Personalize suas preferências do ateliê e notificações.</p>
+        </div>
+
+        <div class="card-dados mx-auto">
+            <p>
+                <strong>Tema do Sistema</strong>
+                <span class="badge-category badge-joia">✦ Rubi & Ouro Champagne</span>
+            </p>
+            <p>
+                <strong>Catálogo Padrão</strong>
+                <span>Joias, Anéis & Piercings</span>
+            </p>
+            <p>
+                <strong>Moeda</strong>
+                <span class="fw-semibold">Real Brasileiro (R$)</span>
+            </p>
+            <p>
+                <strong>Notificações de Estoque</strong>
+                <span class="text-success fw-semibold">Ativo (Aviso de baixo estoque)</span>
+            </p>
+
+            <div class="pt-3 mt-3 border-top d-flex justify-content-between align-items-center">
+                <a href="{{ url_for('user.meus_dados') }}" class="btn btn-warning btn-sm">
+                    Ver Meus Dados
+                </a>
+                <a href="{{ url_for('product.listar_produtos') }}" class="btn btn-primary btn-sm">
+                    Ir para o Catálogo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

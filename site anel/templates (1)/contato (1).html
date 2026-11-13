@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Contato & Atendimento | Aura Joias & Acessórios{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 text-center">
+        <div class="mb-4">
+            <h1 class="font-display">Atendimento Exclusivo</h1>
+            <p class="subtitle">Dúvidas sobre medidas de anéis, piercings ou encomendas de joias? Fale conosco.</p>
+        </div>
+
+        <div class="card-dados mx-auto text-start">
+            <p>
+                <strong>Atendimento VIP</strong>
+                <span>Segunda a Sábado, das 09h às 19h</span>
+            </p>
+            <p>
+                <strong>E-mail</strong>
+                <a href="mailto:contato@aurajoias.com.br" class="fw-semibold">contato@aurajoias.com.br</a>
+            </p>
+            <p>
+                <strong>WhatsApp / Telefone</strong>
+                <span class="fw-semibold text-dark">+55 (11) 98765-4321</span>
+            </p>
+            <p>
+                <strong>Atelier Físico</strong>
+                <span>Alameda das Joias, 1000 - Jardins, São Paulo - SP</span>
+            </p>
+
+            <div class="text-center pt-3 mt-3 border-top">
+                <a href="{{ url_for('main.index') }}" class="btn btn-primary">
+                    ✦ Voltar à Página Inicial
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

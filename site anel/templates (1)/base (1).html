@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Aura | Joias & Acessórios{% endblock %}</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilo personalizado com Rubi & Ouro Champagne -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                <span class="gem-icon">✦</span>
+                <span>AURA</span>
+                <span class="brand-complement">Joias & Acessórios</span>
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <div class="navbar-nav ms-auto align-items-lg-center">
+
+                    {% if session.get('user_id') %}
+                        <a class="nav-link" href="{{ url_for('main.index') }}">Início</a>
+                        <a class="nav-link" href="{{ url_for('product.listar_produtos') }}">Acessórios & Joias</a>
+                        <a class="nav-link" href="{{ url_for('user.meus_dados') }}">Meus Dados</a>
+                        <a class="nav-link" href="{{ url_for('user.servicos') }}">Serviços</a>
+                        <a class="nav-link" href="{{ url_for('user.configuracoes') }}">Configurações</a>
+                        <a class="nav-link" href="{{ url_for('user.contato') }}">Contato</a>
+                        <a class="nav-link nav-logout text-warning ms-lg-2" href="{{ url_for('auth.logout') }}">Sair</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('main.index') }}">Início</a>
+                        <a class="nav-link" href="{{ url_for('user.contato') }}">Contato</a>
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Entrar</a>
+                        <a class="btn btn-sm btn-primary ms-lg-2" href="{{ url_for('user.cadastro_usuario') }}">Cadastrar</a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="container">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for categoria, mensagem in messages %}
+                        <div class="alert alert-{{ 'danger' if categoria == 'danger' or categoria == 'alert-danger' else ('success' if categoria == 'success' else ('warning' if categoria == 'warning' else 'info')) }} alert-dismissible fade show" role="alert">
+                            {{ mensagem }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="mb-0">
+                ✦ <strong>AURA</strong> &bull; Alta Joalheria, Anéis, Piercings & Acessórios Finos &bull;
+                <span class="gold-accent">Elegância & Precisão</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

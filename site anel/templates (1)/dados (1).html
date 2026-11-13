@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Meus Dados | Aura Joias & Acessórios{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="mb-4">
+            <h1 class="font-display">Meus Dados</h1>
+            <p class="subtitle">Informações de perfil e contato cadastrados no sistema.</p>
+        </div>
+
+        <div class="card-dados mx-auto">
+            <p>
+                <strong>Nome</strong>
+                <span class="fw-semibold">{{ usuario.nome }}</span>
+            </p>
+            <p>
+                <strong>E-mail</strong>
+                <span>{{ usuario.email }}</span>
+            </p>
+            <p>
+                <strong>Telefone</strong>
+                <span>{{ usuario.telefone or 'Não informado' }}</span>
+            </p>
+
+            <div class="d-flex flex-wrap gap-2 pt-3 mt-3 border-top justify-content-between align-items-center">
+                <a href="{{ url_for('main.index') }}" class="btn btn-secondary btn-sm">
+                    Voltar ao Início
+                </a>
+
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('user.editar_usuario', user_id=usuario.id) }}" class="btn btn-warning btn-sm">
+                        Editar Perfil
+                    </a>
+
+                    <form action="{{ url_for('user.deletar_usuario', user_id=usuario.id) }}"
+                          method="post"
+                          class="d-inline"
+                          style="display:inline; padding:0; background:none; border:none; box-shadow:none;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir sua conta? Esta ação não pode ser desfeita.')">
+                            Excluir Conta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

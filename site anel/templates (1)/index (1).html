@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Aura | Alta Joalheria & Acessórios Finos{% endblock %}
+
+{% block content %}
+<div class="hero-boutique">
+    <div class="hero-badge">
+        <span>✦</span> Coleção Exclusiva &bull; Design Autoral <span>✦</span>
+    </div>
+    <h1 class="font-display">
+        Joias, Anéis & <span class="highlight-ruby">Piercings Exclusivos</span>
+    </h1>
+    <p class="hero-desc">
+        Descubra o brilho autêntico da alta joalheria e acessórios finos em ouro 18k, prata 925 e titânio de grau implante. Elegância atemporal pensada para você.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('product.listar_produtos') }}" class="btn btn-primary">
+                ✦ Ver Catálogo de Acessórios
+            </a>
+            <a href="{{ url_for('product.cadastrar_produto') }}" class="btn btn-warning">
+                + Nova Peça
+            </a>
+        {% else %}
+            <a href="{{ url_for('user.cadastro_usuario') }}" class="btn btn-primary">
+                Criar Minha Conta
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-warning">
+                Acessar Painel
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Vitrine de Categorias em Destaque -->
+    <div class="categories-showcase">
+        <div class="showcase-card">
+            <div class="icon-wrap">💍</div>
+            <h3>Anéis & Alianças</h3>
+            <p>Solitários, aparadores e designs contemporâneos em ouro 18k e prata 925.</p>
+        </div>
+
+        <div class="showcase-card">
+            <div class="icon-wrap">✨</div>
+            <h3>Piercings Finos</h3>
+            <p>Modelos em titânio cirúrgico ASTM F-136 e ouro com cravação de zircônias e pedras nobres.</p>
+        </div>
+
+        <div class="showcase-card">
+            <div class="icon-wrap">💎</div>
+            <h3>Joias & Pedrarias</h3>
+            <p>Gemas selecionadas, rubis lapidados, diamantes e sofisticação de alto padrão.</p>
+        </div>
+
+        <div class="showcase-card">
+            <div class="icon-wrap">📿</div>
+            <h3>Colares & Correntes</h3>
+            <p>Pingentes delicados, correntes venezianas e gargantilhas com acabamento refinado.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
